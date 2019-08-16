@@ -1,14 +1,26 @@
 <template>
   <div id="app">
-    <h1>小橘子项目启动仪式</h1>
-    <TabBar></TabBar>
+    <router-view></router-view>
+  
+    <!-- <TabBar></TabBar> -->
+    <!-- <Login/> -->
+    <!-- <Choice></Choice> -->
+    <Loginhome></Loginhome>
   </div>
 </template>
 <script>
-import TabBar from './components/tab-bar/tab-bar'
+
+// import TabBar from './components/tab-bar/tab-bar';
+// import Login from './components/Login/Login';
+// import Choice from './components/Login/Choice';
+ import Loginhome from './components/Login/Loginhome';
 export default {
     components:{
-      TabBar,
+      // TabBar,
+      // Login,
+      // Choice,
+      Loginhome
+      
     }
 }
 </script>
