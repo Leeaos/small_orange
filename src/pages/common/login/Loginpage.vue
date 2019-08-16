@@ -1,25 +1,52 @@
 <template>
-  <div id="login-home">
-    <img class="log" src="../../pages/assets/image/login-home1.png" alt />
-    <img class="log" src="../../pages/assets/image/login-home2.png" alt />
-    <img class="log" src="../../pages/assets/image/login-home3.png" alt />
-    <div class="login-home__foot">
-      <div class="login-home__foot__resg">注册</div>
-      <div class="login-home__foot__login">登录</div>
+  <div>
+    <div id="login-home">
+      <img class="log" src="../../assets/image/login-home1.png" alt />
+      <img class="log" src="../../assets/image/login-home2.png" alt />
+      <img class="log" src="../../assets/image/login-home3.png" alt />
+      <div class="login-home__foot">
+        <div class="login-home__foot__resg">
+          <router-link to="/logins/login" >注册</router-link>
+        </div>
+        <div class="login-home__foot__login">
+          <router-link to="/logins/register" >登录</router-link>
+        </div>
+      </div>
     </div>
+    <router-view></router-view>
   </div>
 </template>
-
 <script>
-export default {};
-</script>
+export default {
+    data(){
+      return{
+     
+      }
+    },
+  methods:{
+     
+  }
+  
 
+
+};
+</script>
 <style lang="scss" scoped>
-@import "../../pages/assets/style/px2rem";
+@import "../../assets/style/px2rem";
 #login-home {
+  .router-link-active{
+      color: #282828;
+  }
+  a {
+    color: #6a6a6a;
+  }
   position: absolute;
+  top:0;
+  left: 0;
+  bottom:0;
   width: 100%;
   height: 100%;
+  z-index: 500;
   background-image: linear-gradient(#f89e45 0%, #fac086 50%, #fbf1e6 100%);
   .log {
     display: block;
@@ -41,7 +68,6 @@ export default {};
       text-align: center;
       border-radius: 6px;
       font-weight: bold;
-      color: #282828;
       width: px2rem(202);
       height: px2rem(60);
       background: #f4f4f4;

@@ -1,8 +1,8 @@
 <template>
   <div id="choice">
     <div class="choice-logo">
-        <img src="../../pages/assets/image/log2.png" alt="">
-      <img src="../../pages/assets/image/log1.jpg" alt />
+        <img src="../../assets/image/log2.png" alt="">
+      <img src="../../assets/image/log1.jpg" alt />
       
     </div>
     <p>打开橘子，记录你的美好点滴</p>
@@ -15,7 +15,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-@import "../../pages/assets/style/px2rem";
+@import "../../assets/style/px2rem";
 #choice {
   background: #fbf3ea;
   position: absolute;
