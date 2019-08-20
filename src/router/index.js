@@ -8,6 +8,10 @@ Vue.use(Router);
 const routes = [
   login,
   {
+    path: "/",
+    component: () => import("../pages/common/login/Loginpage.vue")
+  },
+  {
     path: "/404",
     component: () => import("../pages/common/NotFind/NotFind.vue")
   },

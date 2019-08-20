@@ -1,31 +1,45 @@
 <template>
   <div id="login">
     <div class="login-header">
-      <router-link to="/logins"> <img
-        class="login-back"
-        src="../../assets/image/register_icon_Return@2x.png"
-        alt
-        srcset
-      /></router-link>
+      <router-link to="/logins">
+        <img class="login-back" src="../../assets/image/register_icon_Return@2x.png" alt srcset />
+      </router-link>
     </div>
     <div class="login-content">
       <!--  -->
       <div class="btn">
-        <span class="login-btn"><router-link to="/logins/login" >注册</router-link></span>
-        <span class="register-btn"><router-link to="/logins/register" >登陆</router-link></span>
+        <span class="login-btn">
+          <router-link to="/logins/login">注册</router-link>
+        </span>
+        <span class="register-btn">
+          <router-link to="/logins/register">登陆</router-link>
+        </span>
       </div>
       <!-- 手机输入框 -->
       <div class="login-content__input1">
         <img class="phone-icon" src="../../assets/image/register_icon_phone@2x.png" alt srcset />
-        <input class="phone-input" type="text" name maxlength="11" placeholder="请输入手机号" />
+        <input
+          class="phone-input"
+          @blur="loginInputAction"
+          @focus="phoneFocus"
+          ref="phone"
+          type="text"
+          name
+          maxlength="11"
+          placeholder="请输入手机号"
+        />
+        <p class="phone-info" v-show="phoneInfo">请输入正确的手机格式</p>
       </div>
       <!--输入验证码  -->
-      <div class="login-content__input3" >
+      <div class="login-content__input3">
         <img src="../../assets/image/register_icon_key@2x.png" alt />
         <input class="key-input" type="text" placeholder="请输入验证码" />
-        <img class="yzm" src="../../assets/image/register_button_Get validation@2x.png" alt />
+        <img 
+        class="yzm" 
+        src="../../assets/image/register_button_Get validation@2x.png"
+        @click="sendYzmAction"
+        alt />
       </div>
-
       <!-- 密码输入框 -->
       <div class="login-content__input2">
         <img class="password-icon" src="../../assets/image/register_icon_lock@2x.png" alt srcset />
@@ -35,7 +49,6 @@
       </div>
     </div>
     <!-- 其他登陆方式 -->
-
     <!-- 立即登陆  -->
     <img
       class="immediately-btn"
@@ -61,11 +74,12 @@
 </template>
 
 
-<script>
+<script> 
 
 export default {
   data() {
     return {
+      phoneInfo: false,
       seen: "",
       openeye: require("../../assets/image/register_button_eye@2x.png"), //图片地址
       nopeneye: require("../../assets/image/register_button_eye2@2x.png"),
@@ -76,11 +90,30 @@ export default {
   methods: {
     changeType() {
       this.passwordType =
-        this.passwordType === "password" ? "text" : "password";//密码显示隐藏
+        this.passwordType === "password" ? "text" : "password"; //密码显示隐藏
       this.seen = !this.seen; //小眼睛的变化
     },
-  
+    loginInputAction() {
+      let phone = this.$refs.phone.value;
+      console.log(phone);
+      // 获取验证码，验证数据格式，是不是电话号码
+      if (!/^1[34578]\d{9}$/.test(phone) && this.$refs.phone.value.length > 0) {
+        this.phoneInfo = true;
+      } else {
+        return true;
+      }
+    },
+    //获取焦点时隐藏info
+    phoneFocus() {
+      this.phoneInfo = false;
+    },
+    //发送验证码
+    sendYzmAction(){
+      let value=this.$refs.phone.value
+        this.$store.dispatch('user/requestCode',{value})
+    }
   },
+ 
 };
 </script>
 
@@ -105,15 +138,24 @@ export default {
     padding-left: px2rem(48);
     .btn {
       margin-bottom: px2rem(84);
-      .login-btn a{
+      .login-btn a {
         font-size: 40px;
         color: #282828;
         padding-right: px2rem(42);
         font-weight: 800;
       }
-      .register-btn a{
+      .register-btn a {
         font-size: 34px;
         color: #6a6a6a;
+      }
+    }
+    &__input1 {
+      position: relative;
+      .phone-info {
+        position: absolute;
+        font-size: 18px;
+        top: px2rem(60);
+        left: px2rem(50);
       }
     }
 
@@ -178,7 +220,7 @@ export default {
     height: px2rem(152);
     line-height: px2rem(152);
     font-size: 24px;
-    font-family: 'PingFangSC-Semibold';
+    font-family: "PingFangSC-Semibold";
     font-weight: 600;
     color: rgba(40, 40, 40, 1);
     padding-left: px2rem(48);

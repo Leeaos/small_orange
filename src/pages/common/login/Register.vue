@@ -35,7 +35,7 @@
     <!-- 立即登陆  -->
     <img
       class="immediately-btn"
-      src="../../assets/image/register_button_register@2x.png"
+      src="../../assets/image/The login_button_The login.png"
       alt
       srcset
     />
@@ -63,7 +63,7 @@
 export default {
   data() {
     return {
-        isShow:false,
+      isShow:false,
       seen: "",
       openeye: require("../../assets/image/register_button_eye@2x.png"), //图片地址
       nopeneye: require("../../assets/image/register_button_eye2@2x.png"),
