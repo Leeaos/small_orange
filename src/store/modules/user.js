@@ -1,5 +1,5 @@
 import api from "../../request/api";
-import { post,get } from "../../request//index";
+import { post,get } from "../../request/index";
 
 
 export default {
